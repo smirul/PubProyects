@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script type="text/javascript">   
+        function getNumer(){
+            var secs = document.getElementById('txtNumber').value;
+            var ranNum = randomNumber(secs);
+            alert("the random numer is " + ranNum);
+        }
+        function flip(){
+            return Math.random() >= 0.5;
+        }     
+        
+        function dec2bin(dec) {
+                return (dec >>> 0).toString(2);
+        }
+
+        function ExceptionMessage(mensaje) {
+                this.mensaje = mensaje;
+                this.nombre = "Exception";
+        }
+
+        function randomNumber(n) {
+                if (n < 0)
+                    throw new ExceptionMessage("Number less than 0 is not valid.");
+                if (n >= 1000000)
+                    throw new ExceptionMessage("the number is more than 1000000, is not valid.");
+                n--;
+                if (n == 0)
+                    return n;
+                var bin = dec2bin(n);
+                var i = bin.length;
+                var newBin = "";
+                while (i--) {
+                    newBin = newBin + (flip() ? 1 : 0);
+                }
+                return (n < parseInt(newBin, 2) ? parseInt(newBin, 2) : n - parseInt(newBin, 2));
+            }
+    </script>
+</head>
+    
+    <body>
+    
+        <h1>Coin Flip</h1>
+    
+        <div class="container">
+            <div>
+                <label >Number</label>
+                </br>
+                <input id="txtNumber"  type="number"/>
+                </br>
+                <input id="btnGetNum" type="button" onclick="getNumer();" value="Get Number"/> 
+            </div>
+            
+        </div>
+    
+    </body>
+    
+</html>

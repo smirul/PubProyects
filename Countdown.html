@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<style type="text/css">
+    h1{
+        color: #555555;
+        text-align: center;
+    }
+    body{
+        background-color: #e2e2e2;    
+    }
+    .container{
+    	margin: auto;
+    	width: 450px;
+    	height: 100px;
+    	border: 3px solid gray;
+    	padding: 10px;
+    	text-align: center;
+    	border-radius: 5px;
+    }
+    .container>div{
+    	margin: 10px 5px 10px 5px;
+    	width: 100px;
+    	height: 80px;
+    	border: 1px solid gray;
+    	border-radius: 5px;
+    	color: #000000;
+    	float: left;
+    }
+    .container>div>*{
+    	margin: auto;
+    	height: 30%;
+    	display: block; 
+    }
+    label{
+    	font-size: 40px;        
+    }
+    span{
+        font-weight: bold;
+        color: #555555;
+    }
+    </style>
+    
+    <script type="text/javascript"> 
+    document.addEventListener('DOMContentLoaded', function(){    // do something
+    		var days,hours, mins, secs;    		
+    		
+    		var intID = setInterval(function () {     			
+                secs = document.getElementById('secs').textContent;
+                mins = document.getElementById('mins').textContent;
+                hours = document.getElementById('hours').textContent;
+                days = document.getElementById('days').textContent;
+                
+                if(secs >= 0 ){                    
+                    document.getElementById('secs').textContent = (secs <= 0 ? 59 : secs - 1);   
+                    secs = document.getElementById('secs').textContent;
+                    if(mins>=0 && secs == 59){                                                
+                        document.getElementById('mins').textContent = (mins <= 0 ? 59 : mins - 1);
+                        if(hours >=0 && mins == 0){                            
+                            document.getElementById('hours').textContent = (hours==0 && days>0? 24: hours-1);
+                            if(hours == 0 && days > 0)
+                                document.getElementById('days').textContent = days - 1;
+                        }
+                    }
+                }
+                 if (days == 0 && hours == 0 && mins == 0 && secs == 0)
+                    clearInterval(intID);
+                
+    		}, 1000);
+    });
+    	
+    </script>
+</head>
+<body>
+
+	<h1>COUNTDOWN</h1>
+
+	<div class="container">
+		<div><label id="days">1</label></br><span>Days</span></div>
+		<div><label id="hours">23</label></br><span>Hours</span></div>
+		<div><label id="mins">27</label></br><span>Minutes</span></div>
+		<div><label id="secs">47</label></br><span>Seconds</span></div>
+    </div>
+
+</body>
+</html>
+
+    
